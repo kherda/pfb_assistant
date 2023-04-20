@@ -1,0 +1,35 @@
+runtime:
+  version: 1.15
+  js:
+    # https://js.stripe.com/v3/: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/sweetalert2@11: { type: external, minified: true }
+    https://securepubads.g.doubleclick.net/tag/js/gpt.js: { type: external, minified: true  }
+
+    https://v4.profilebuilder.app/sites/pfb/modules/pfb/js/device-detector.js: { type: external, minified: true }
+    js/assistant.js: { minified: true, scope: footer, attributes: { defer: true } }
+
+  dependencies:
+     - core/jquery
+     - core/drupalSettings
+     - core/jquery.cookie
+     - core/drupal.ajax
+     - core/drupal.dialog
+     - core/drupal.dialog.ajax
+
+domain_tracking_trending_now:
+  version: 1.15
+  js:
+    js/domain_tracking_trending_now.js: {}
+
+  dependencies:
+     - core/jquery
+     - core/drupalSettings
+     - core/drupal.ajax
+     - core/drupal.dialog
+     - core/drupal.dialog.ajax
+
+gam:
+  version: 1.x
+  css:
+    base:
+      css/gam.css: {}

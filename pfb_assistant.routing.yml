@@ -1,0 +1,18 @@
+pfb_assistant.settings:
+  path: '/admin/config/pfb-assistant/settings'
+  defaults:
+    _form: '\Drupal\pfb_assistant\Form\SettingsForm'
+    _title: 'PFB Assistant Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+
+pfb_assistant.boomerang_endpoint:
+  path: 'api/v2/boomerang-endpoint'
+  defaults:
+    _controller: '\Drupal\pfb_assistant\Controller\API::boomerang'
+  methods:  [GET]
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE

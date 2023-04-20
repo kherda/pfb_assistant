@@ -1,0 +1,5 @@
+pfb_assistant.settings:
+  title: 'PFB Assistant'
+  description: 'Configure the Assistant.'
+  route_name: pfb_assistant.settings
+  parent: system.admin_config_development

@@ -1,0 +1,101 @@
+<?php
+
+use Drupal\taxonomy;
+
+/**
+ * Implements hook_theme().
+ */
+function pfb_assistant_theme() {
+
+  $theme['custom_block'] = [
+    'variables' => [
+      'custom_text' => NULL,
+    ],
+    'template' => 'custom-block',
+  ];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_library_info_build().
+ *
+ * @todo:  include Google, Stripe, or other libraries?
+ */
+
+function pfb_assistant_library_info_build() {
+
+  $domain = \Drupal::config('pfb_assistant.settings')->get('domain');
+  $domain = rtrim($domain, '/');
+
+  $js_script_version = \Drupal::config('pfb_assistant.settings')->get('js_script_version');
+
+  $libraries = [];
+  $libraries['pfb-assistant'] = [
+    'version' => '1.x',
+    'header' => false,
+    'js' => [
+      $domain . '/sites/pfb/modules/pfb/js/bootstrap' . $js_script_version . '.js' => [
+        'type' => 'external',
+        //'minified' => false,
+        'attributes' => [
+          'defer' => true,
+        ],
+      ],
+    ],
+    'css' => [
+      'base' => [
+        $domain . '/sites/pfb/modules/pfb/css/client.css' => [
+          'type' => 'external',
+        ],
+      ],
+    ],
+  ];
+
+  return $libraries;
+}
+
+
+function pfb_assistant_page_attachments_alter(array &$attachments, &$blocks) {
+
+  $domain_uuid = \Drupal::config('pfb_assistant.settings')->get('domain_uuid');
+  $domain = \Drupal::config('pfb_assistant.settings')->get('domain');
+  $ip_recheck = \Drupal::config('pfb_assistant.settings')->get('ip_recheck');
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+
+    $is_node = TRUE;
+    $nid = $node->id();
+    $type = $node->getType();
+
+    $terms = \Drupal::database()->query('
+    SELECT
+    data.tid, data.name
+    FROM taxonomy_term_field_data data
+    INNER JOIN taxonomy_index term_index ON data.tid = term_index.tid
+    WHERE term_index.nid = :nid
+  ', [':nid' => $nid])->fetchAllKeyed();
+  } else {
+    $is_node = FALSE;
+    $type = NULL;
+  }
+
+  $is_admin = 0;
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+   $is_admin = 1;
+  }
+
+  $is_anonymous = \Drupal::currentUser()->isAnonymous();
+  $response['tids'] = empty($tids) ? NULL : $tids;
+
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['is_admin'] = $is_admin;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['is_anonymous'] = $is_anonymous;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['domain_uuid'] = $domain_uuid;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['domain'] = $domain;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['terms'] = !empty($terms) ? $terms : NULL;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['is_node'] = $is_node;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['content_type'] = $type;
+  $attachments['#attached']['drupalSettings']['pfb_assistant']['ip_recheck'] = $ip_recheck;
+  $attachments['#attached']['library'][] = 'pfb_assistant/pfb-assistant';
+}
