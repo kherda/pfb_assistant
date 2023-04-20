@@ -48,7 +48,7 @@ class SettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => t('Domain'),
       '#description' => t('Allows you to utilize development.  Prod = https://profilebuilder.app'),
-      '#default_value' => strlen($config->get('domain')) > 3 ? $config->get('domain') : 'https://profilebuilder.app',
+      '#default_value' => !empty($config->get('domain')) ? $config->get('domain') : 'https://v4.profilebuilder.app',
     );
 
     $form['js_script_version'] = array(

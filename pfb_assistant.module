@@ -26,33 +26,35 @@ function pfb_assistant_theme() {
 function pfb_assistant_library_info_build() {
 
   $domain = \Drupal::config('pfb_assistant.settings')->get('domain');
-  $domain = rtrim($domain, '/');
+  if (!empty($domain)) {
+    $domain = rtrim($domain, '/');
 
-  $js_script_version = \Drupal::config('pfb_assistant.settings')->get('js_script_version');
+    $js_script_version = \Drupal::config('pfb_assistant.settings')->get('js_script_version');
 
-  $libraries = [];
-  $libraries['pfb-assistant'] = [
-    'version' => '1.x',
-    'header' => false,
-    'js' => [
-      $domain . '/sites/pfb/modules/pfb/js/bootstrap' . $js_script_version . '.js' => [
-        'type' => 'external',
-        //'minified' => false,
-        'attributes' => [
-          'defer' => true,
-        ],
-      ],
-    ],
-    'css' => [
-      'base' => [
-        $domain . '/sites/pfb/modules/pfb/css/client.css' => [
+    $libraries = [];
+    $libraries['pfb-assistant'] = [
+      'version' => '1.x',
+      'header' => false,
+      'js' => [
+        $domain . '/sites/pfb/modules/pfb/js/bootstrap' . $js_script_version . '.js' => [
           'type' => 'external',
+          //'minified' => false,
+          'attributes' => [
+            'defer' => true,
+          ],
         ],
       ],
-    ],
-  ];
+      'css' => [
+        'base' => [
+          $domain . '/sites/pfb/modules/pfb/css/client.css' => [
+            'type' => 'external',
+          ],
+        ],
+      ],
+    ];
 
-  return $libraries;
+    return $libraries;
+  }
 }
 
 
