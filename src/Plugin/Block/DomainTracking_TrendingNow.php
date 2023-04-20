@@ -17,11 +17,11 @@ use Drupal\Core\Database\Database;
  * defaultConfiguration(), blockForm(), blockSubmit(), and build().
  *
  * @Block(
- *   id = "trending_now",
- *   admin_label = @Translation("PFB: Trending Now")
+ *   id = "domain_tracking_trending_now",
+ *   admin_label = @Translation("Domain Tracking: Trending Now")
  * )
  */
-class TrendingNow extends BlockBase {
+class DomainTracking_TrendingNow extends BlockBase {
 
   /**
    * {@inheritdoc}

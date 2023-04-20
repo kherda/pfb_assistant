@@ -13,11 +13,11 @@ use Drupal\Core\Form\FormStateInterface;
  * defaultConfiguration(), blockForm(), blockSubmit(), and build().
  *
  * @Block(
- *   id = "pfb_gam_ad_unit",
+ *   id = "gam_ad_units",
  *   admin_label = @Translation("GAM - Ad Unit")
  * )
  */
-class PFBGAMAdUnit extends BlockBase {
+class GAM_Ad_Units extends BlockBase {
 
   /**
    * {@inheritdoc}
