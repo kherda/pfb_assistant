@@ -1,5 +1,5 @@
 (function($, Drupal) {
-  Drupal.behaviors.pfb_assistant_v2 = {
+  Drupal.behaviors.pfb_assistant = {
     attach: function(context, settings)
     {
       if (context === document) {
