@@ -4,6 +4,6 @@
     "description": "Provides tools to connect directly to the Profile Builder",
     "license": "GPL-2.0-or-later",
     "require": {
-        "drupal/core": "^8.8 || ^9",
+        "drupal/core": "^8.8 || ^9"
     },
 }
