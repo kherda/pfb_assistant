@@ -99,5 +99,5 @@ function pfb_assistant_page_attachments_alter(array &$attachments, &$blocks) {
   $attachments['#attached']['drupalSettings']['pfb_assistant']['is_node'] = $is_node;
   $attachments['#attached']['drupalSettings']['pfb_assistant']['content_type'] = $type;
   $attachments['#attached']['drupalSettings']['pfb_assistant']['ip_recheck'] = $ip_recheck;
-  $attachments['#attached']['library'][] = 'pfb_assistant/pfb-assistant';
+  $attachments['#attached']['library'][] = 'pfb_assistant/runtime';
 }

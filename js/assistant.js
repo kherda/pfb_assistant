@@ -6,15 +6,15 @@
         console.log('pfbv4 fire.'); // Once <--
 
         if (settings) {
-          var is_admin = drupalSettings.pfb_assistant_v2.is_admin;
-          var is_anonymous = drupalSettings.pfb_assistant_v2.is_anonymous;
-          var domain_uuid = drupalSettings.pfb_assistant_v2.domain_uuid;
-          var endpoint = drupalSettings.pfb_assistant_v2.domain;
-          var terms = drupalSettings.pfb_assistant_v2.terms;
-          var is_node = drupalSettings.pfb_assistant_v2.is_node;
-          var ip_stack_key = drupalSettings.pfb_assistant_v2.ip_stack_key;
-          var content_type = drupalSettings.pfb_assistant_v2.content_type;
-          var ip_recheck = drupalSettings.pfb_assistant_v2.ip_recheck;
+          var is_admin = drupalSettings.pfb_assistant.is_admin;
+          var is_anonymous = drupalSettings.pfb_assistant.is_anonymous;
+          var domain_uuid = drupalSettings.pfb_assistant.domain_uuid;
+          var endpoint = drupalSettings.pfb_assistant.domain;
+          var terms = drupalSettings.pfb_assistant.terms;
+          var is_node = drupalSettings.pfb_assistant.is_node;
+          var ip_stack_key = drupalSettings.pfb_assistant.ip_stack_key;
+          var content_type = drupalSettings.pfb_assistant.content_type;
+          var ip_recheck = drupalSettings.pfb_assistant.ip_recheck;
         }
 
         var crawlerAgentRegex = /bot|brightedge|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i;
