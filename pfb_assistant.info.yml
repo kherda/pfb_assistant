@@ -2,7 +2,7 @@ name: PFB Assistant
 description: 'Logic to further communicate this website to the Profile Builder.'
 package: Profile Builder
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || 10^
 type: module
 configure: pfb_assistant.settings
 
